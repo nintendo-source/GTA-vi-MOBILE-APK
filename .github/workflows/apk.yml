@@ -16,10 +16,28 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - uses: android-actions/setup-android@v3
+      - name: Install Android SDK without setup-android action
+        run: |
+          set -e
+          SDK_DIR="$HOME/android-sdk"
+          mkdir -p "$SDK_DIR/cmdline-tools"
+          curl -fsSL "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip" -o /tmp/cmdline-tools.zip
+          unzip -q /tmp/cmdline-tools.zip -d "$SDK_DIR/cmdline-tools"
+          mv "$SDK_DIR/cmdline-tools/cmdline-tools" "$SDK_DIR/cmdline-tools/latest"
+
+          echo "ANDROID_HOME=$SDK_DIR" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$SDK_DIR" >> "$GITHUB_ENV"
+          echo "$SDK_DIR/cmdline-tools/latest/bin:$SDK_DIR/platform-tools" >> "$GITHUB_PATH"
+
+          yes | "$SDK_DIR/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$SDK_DIR" --licenses >/dev/null
+          "$SDK_DIR/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$SDK_DIR" \
+            "platform-tools" \
+            "build-tools;35.0.1" \
+            "platforms;android-35"
 
       - name: Install Godot 4.7-dev1 and templates
         run: |
+          set -e
           mkdir -p /tmp/godot ~/.local/share/godot/export_templates/4.7.dev1
           curl -fsSL "https://github.com/godotengine/godot-builds/releases/download/4.7-dev1/Godot_v4.7-dev1_linux.x86_64.zip" -o /tmp/godot/godot.zip
           unzip -q /tmp/godot/godot.zip -d /tmp/godot
@@ -35,6 +53,7 @@ jobs:
 
       - name: Export APK
         run: |
+          set -e
           mkdir -p out
           godot --headless --path . --export-debug "Android" out/game.apk
 
