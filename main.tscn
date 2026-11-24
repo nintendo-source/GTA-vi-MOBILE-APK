@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://bxn1sxqpltue2"]
+
+[ext_resource type="Script" uid="uid://rjy4q71uc2wx" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://nv687xvi5sl4" path="res://assets/splash_bg.png" id="2_1bvp3"]
+[ext_resource type="VideoStream" uid="uid://beewl77y3payv" path="res://assets/boot_intro.ogv" id="2_h2yge"]
+
+[sub_resource type="Gradient" id="Gradient_h2yge"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1bvp3"]
+gradient = SubResource("Gradient_h2yge")
+
+[node name="Main" type="Control" unique_id=2140546108]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0xm2m")
+
+[node name="SetupBG" type="TextureRect" parent="." unique_id=131726329]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1bvp3")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Screen1_Splash" type="Control" parent="." unique_id=1382823559]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Screen1_Splash" unique_id=1182686800]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1bvp3")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Button" type="Button" parent="Screen1_Splash" unique_id=324426643]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 582.0
+offset_right = 773.0
+offset_bottom = 613.0
+text = "TAP TO START"
+
+[node name="Screen2_Narration" type="Control" parent="." unique_id=720900090]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Screen2_Narration" unique_id=1749219803]
+layout_mode = 0
+offset_left = 1040.0
+offset_top = 603.0
+offset_right = 1135.0
+offset_bottom = 634.0
+text = "Next"
+
+[node name="Screen3_Navigation" type="Control" parent="." unique_id=1438861476]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Screen4_TextSize" type="Control" parent="." unique_id=1787287627]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Screen5_HDR" type="Control" parent="." unique_id=1782158913]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Screen6_Finish" type="Control" parent="." unique_id=1242577561]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VideoPlayer" type="VideoStreamPlayer" parent="." unique_id=1021932529]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_h2yge")
